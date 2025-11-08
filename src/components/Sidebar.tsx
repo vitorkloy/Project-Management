@@ -11,8 +11,8 @@ interface SidebarProps {
 const SidebarContent: React.FC<SidebarProps> = ({ currentPage, setCurrentPage, setMobileMenuOpen }) => (
   <div className="flex flex-col h-full">
     <div className="p-6 border-b border-gray-200">
-      <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-        ContaFlow
+      <h1 className="text-2xl font-bold bg-linear-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+        Contabilidade
       </h1>
       <p className="text-sm text-gray-600 mt-1">Gestão de Projetos</p>
     </div>
@@ -31,7 +31,7 @@ const SidebarContent: React.FC<SidebarProps> = ({ currentPage, setCurrentPage, s
             }}
             className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
               isActive
-                ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-md'
+                ? 'bg-linear-to-r from-blue-600 to-cyan-600 text-white shadow-md'
                 : 'text-gray-700 hover:bg-gray-100'
             }`}
           >
@@ -43,7 +43,7 @@ const SidebarContent: React.FC<SidebarProps> = ({ currentPage, setCurrentPage, s
     </nav>
 
     <div className="p-4 border-t border-gray-200">
-      <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg p-4">
+      <div className="bg-linear-to-r from-blue-50 to-cyan-50 rounded-lg p-4">
         <h3 className="font-semibold text-gray-900 mb-2">Precisa de ajuda?</h3>
         <p className="text-sm text-gray-600 mb-3">
           Acesse nossa documentação completa

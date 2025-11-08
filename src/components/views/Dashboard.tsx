@@ -58,21 +58,21 @@ export const Dashboard = ({ stats, tasks, getDaysUntilDue, showNewTaskDialog, se
     <div className="space-y-6">
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">                               
-            {cardsData.map((card) => (
-              <Card key={card.title} className="border border-gray-200 shadow-md hover:shadow-lg transition-shadow bg-white">
-                <CardContent className="p-4">
-                    <div key={card.title} className="flex items-center justify-between mb-4 last:mb-0">
-                      <div>
-                        <p className="text-sm text-gray-600">{card.title}</p>
-                        <p className={`text-2xl font-bold ${card.textColor}`}>{stats[card.statKey as keyof Stats]}</p>
-                      </div>
-                      <div className={`p-3 ${card.bgColor} rounded-lg`}>
-                        <card.icon className={`h-6 w-6 ${card.textColor}`} />
-                      </div>
-                    </div>
-                </CardContent>
-              </Card>
-            ))}          
+        {cardsData.map((card) => (
+          <Card key={card.title} className="border border-gray-200 shadow-md hover:shadow-lg transition-shadow bg-white">
+            <CardContent className="p-4">
+                <div key={card.title} className="flex items-center justify-between mb-4 last:mb-0">
+                  <div>
+                    <p className="text-sm text-gray-600">{card.title}</p>
+                    <p className={`text-2xl font-bold ${card.textColor}`}>{stats[card.statKey as keyof Stats]}</p>
+                  </div>
+                  <div className={`p-3 ${card.bgColor} rounded-lg`}>
+                    <card.icon className={`h-6 w-6 ${card.textColor}`} />
+                  </div>
+                </div>
+            </CardContent>
+          </Card>
+        ))}          
       </div>
 
       {/* Quick Actions */}
