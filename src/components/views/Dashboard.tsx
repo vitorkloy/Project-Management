@@ -15,80 +15,64 @@ interface DashboardProps {
   onCreateTask: (task: NewTask) => void;
 }
 
+const cardsData = [
+  {
+    title: 'Total',
+    icon: ListTodo,
+    bgColor: 'bg-blue-100',
+    textColor: 'text-blue-600',
+    statKey: 'total'
+  },
+  {
+    title: 'Pendentes',
+    icon: Clock,
+    bgColor: 'bg-gray-100',
+    textColor: 'text-gray-600',
+    statKey: 'pending'
+  },
+  {
+    title: 'Em Andamento',
+    icon: TrendingUp,
+    bgColor: 'bg-blue-100',
+    textColor: 'text-blue-600',
+    statKey: 'inProgress'
+  },
+  {
+    title: 'Concluídos',
+    icon: CheckCircle,
+    bgColor: 'bg-green-100',
+    textColor: 'text-green-600',
+    statKey: 'completed'
+  },
+  {
+    title: 'Atrasados',
+    icon: AlertCircle,
+    bgColor: 'bg-red-100',
+    textColor: 'text-red-600',
+    statKey: 'overdue'
+  }
+];
+
 export const Dashboard = ({ stats, tasks, getDaysUntilDue, showNewTaskDialog, setShowNewTaskDialog, onCreateTask }: DashboardProps) => {
   return (
     <div className="space-y-6">
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <Card className="border border-gray-200 shadow-md hover:shadow-lg transition-shadow bg-white">
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Total</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
-              </div>
-              <div className="p-3 bg-blue-100 rounded-lg">
-                <ListTodo className="h-6 w-6 text-blue-600" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-        
-        <Card className="border border-gray-200 shadow-md hover:shadow-lg transition-shadow bg-white">
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Pendentes</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.pending}</p>
-              </div>
-              <div className="p-3 bg-gray-100 rounded-lg">
-                <Clock className="h-6 w-6 text-gray-600" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="border border-gray-200 shadow-md hover:shadow-lg transition-shadow bg-white">
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Em Andamento</p>
-                <p className="text-2xl font-bold text-blue-600">{stats.inProgress}</p>
-              </div>
-              <div className="p-3 bg-blue-100 rounded-lg">
-                <TrendingUp className="h-6 w-6 text-blue-600" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="border border-gray-200 shadow-md hover:shadow-lg transition-shadow bg-white">
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Concluídos</p>
-                <p className="text-2xl font-bold text-green-600">{stats.completed}</p>
-              </div>
-              <div className="p-3 bg-green-100 rounded-lg">
-                <CheckCircle className="h-6 w-6 text-green-600" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="border border-gray-200 shadow-md hover:shadow-lg transition-shadow bg-white">
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Atrasados</p>
-                <p className="text-2xl font-bold text-red-600">{stats.overdue}</p>
-              </div>
-              <div className="p-3 bg-red-100 rounded-lg">
-                <AlertCircle className="h-6 w-6 text-red-600" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">                               
+            {cardsData.map((card) => (
+              <Card key={card.title} className="border border-gray-200 shadow-md hover:shadow-lg transition-shadow bg-white">
+                <CardContent className="p-4">
+                    <div key={card.title} className="flex items-center justify-between mb-4 last:mb-0">
+                      <div>
+                        <p className="text-sm text-gray-600">{card.title}</p>
+                        <p className={`text-2xl font-bold ${card.textColor}`}>{stats[card.statKey as keyof Stats]}</p>
+                      </div>
+                      <div className={`p-3 ${card.bgColor} rounded-lg`}>
+                        <card.icon className={`h-6 w-6 ${card.textColor}`} />
+                      </div>
+                    </div>
+                </CardContent>
+              </Card>
+            ))}          
       </div>
 
       {/* Quick Actions */}
